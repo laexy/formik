@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
 
 export default function Signup() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+    },
+  });
 
-  console.log(firstName);
+  console.log(formik.values);
 
   return (
     <form>
@@ -15,8 +19,8 @@ export default function Signup() {
           id='firstName'
           name='firstName'
           placeholder='First Name'
-          onChange={(e) => setFirstName(e.target.value)}
-          value={firstName}
+          onChange={formik.handleChange}
+          value={formik.values.firstName}
         />
       </div>
       <div className='input-container'>
@@ -25,8 +29,8 @@ export default function Signup() {
           id='lastName'
           name='lastName'
           placeholder='Last Name'
-          onChange={(e) => setLastName(e.target.value)}
-          value={lastName}
+          onChange={formik.handleChange}
+          value={formik.values.lastName}
         />
       </div>
       <div className='input-container'>
@@ -35,8 +39,8 @@ export default function Signup() {
           id='email'
           name='email'
           placeholder='Email'
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          onChange={formik.handleChange}
+          value={formik.values.email}
         />
       </div>
     </form>
