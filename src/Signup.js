@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import './Signup.css';
 
 export default function Signup() {
   const formik = useFormik({
@@ -7,12 +8,15 @@ export default function Signup() {
       lastName: '',
       email: '',
     },
+    onSubmit: (values) => {
+      console.log(values);
+    },
   });
 
   console.log(formik.values);
 
   return (
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <div className='input-container'>
         <input
           type='text'
@@ -43,6 +47,7 @@ export default function Signup() {
           value={formik.values.email}
         />
       </div>
+      <button type='submit'>Submit</button>
     </form>
   );
 }
